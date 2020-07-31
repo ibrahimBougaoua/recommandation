@@ -246,6 +246,8 @@ def searchMovies():
     cate   = request.args.get("cate")
     email  = request.args.get("email")
 
+    print(jobs.searchBySkills('Java Developer')[:10])
+
     jobSearch = []
     
     if cate == 'skills':
