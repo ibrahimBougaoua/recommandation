@@ -264,7 +264,7 @@ def searchMovies():
             mongo.db.jobSkills.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     if cate == 'skills':
-        jobSearch.append = jobs.searchBySkills(search)[:10] #"R"
+        jobSearch = jobs.searchBySkills(search)[:10] #"R"
         user = mongo.db.jobMajor.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobMajor.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })

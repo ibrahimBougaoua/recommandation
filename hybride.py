@@ -234,6 +234,7 @@ class hybride_job():
             data.append(self.jobs.getJobFromId(id))
         return data
 
+
 ## suite ..
 #.
 #.
