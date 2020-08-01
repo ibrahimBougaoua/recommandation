@@ -30,15 +30,12 @@ mongo  = PyMongo(app)
 
 
 job = jobs()
-print(job.getJobOffersFromMajor("Java Developer")[:10])
-print(job.getJobOffersBasedOnSkillsNeeded("Cisco Routers")[:10])
-print(job.getJobOffersFromCoumpany("Software")[:10])
 
 jobs = hybride_job()
 
 #print(jobs.searchByMajor("Java Developer")[:10])
-#print(jobs.searchBySkills("Cisco Routers")[:10])
-#print(jobs.searchByCompany("Software")[:10])
+#print(jobs.searchBySkills("R")[:10])
+#print(jobs.searchByCompany("Yerevan Brandy Company")[:10])
 
 ######################################################## Jobs Service ######################################################
 
