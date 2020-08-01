@@ -3,6 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from hybride import hybride_job
+from jobs import jobs
 from flask_pymongo import PyMongo
 from functools import wraps
 
@@ -26,11 +27,18 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/movie'
 
 bcrypt = Bcrypt()
 mongo  = PyMongo(app)
+
+
+job = jobs()
+print(job.getJobOffersFromMajor("Java Developer")[:10])
+print(job.getJobOffersBasedOnSkillsNeeded("Cisco Routers")[:10])
+print(job.getJobOffersFromCoumpany("Software")[:10])
+
 jobs = hybride_job()
 
 #print(jobs.searchByMajor("Java Developer")[:10])
-print(jobs.searchBySkills("Bootstrap")[:10])
-#print(jobs.searchByCompany("JavaDeveloper")[:10])
+#print(jobs.searchBySkills("Cisco Routers")[:10])
+#print(jobs.searchByCompany("Software")[:10])
 
 ######################################################## Jobs Service ######################################################
 
