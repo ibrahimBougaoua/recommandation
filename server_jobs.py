@@ -28,6 +28,10 @@ bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 jobs = hybride_job()
 
+#print(jobs.searchByMajor("Java Developer")[:10])
+print(jobs.searchBySkills("Bootstrap")[:10])
+#print(jobs.searchByCompany("JavaDeveloper")[:10])
+
 ######################################################## Jobs Service ######################################################
 
 @app.route('/jobs/test', methods=('GET','POST'))
@@ -245,8 +249,6 @@ def searchMovies():
     search = request.args.get("search")
     cate   = request.args.get("cate")
     email  = request.args.get("email")
-
-    print(jobs.searchBySkills('Java Developer')[:10])
 
     jobSearch = []
     
