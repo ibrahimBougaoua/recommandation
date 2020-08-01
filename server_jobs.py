@@ -264,7 +264,7 @@ def searchMovies():
             mongo.db.jobSkills.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     if cate == 'skills':
-        jobSearch = jobs.searchBySkills(search)[:10] #"R"
+        jobSearch.append(jobs.searchBySkills(search)[:10]) #"R"
         user = mongo.db.jobMajor.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobMajor.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
@@ -276,7 +276,6 @@ def searchMovies():
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     return json.dumps(jobSearch)
-
 
 ##############################################################################################################
 
