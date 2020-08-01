@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from hybride import hybride_job
-from jobs import jobs
+#from jobs import jobs
 from flask_pymongo import PyMongo
 from functools import wraps
 
@@ -29,7 +29,7 @@ bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 
 
-job = jobs()
+#job = jobs()
 
 jobs = hybride_job()
 
@@ -256,21 +256,21 @@ def searchMovies():
     email  = request.args.get("email")
 
     jobSearch = []
-    
-    if cate == 'skills':
-        jobSearch = jobs.searchBySkills(search)[:10]
+
+    if cate == 'majors':
+        jobSearch = jobs.searchByMajor(search)[:10] #"Java Developer"
         user = mongo.db.jobSkills.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobSkills.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
-    if cate == 'majors':
-        jobSearch = jobs.searchByMajor(search)[:10]
+    if cate == 'skills':
+        jobSearch = jobs.searchBySkills(search)[:10] #"R"
         user = mongo.db.jobMajor.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobMajor.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     if cate == 'company':
-        jobSearch = jobs.searchByCompany(search)[:10]
+        jobSearch = jobs.searchByCompany(search)[:10] #"Yerevan Brandy Company"
         user = mongo.db.jobCompany.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
