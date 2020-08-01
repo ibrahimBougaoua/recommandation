@@ -217,13 +217,13 @@ class hybride_job():
         return data
 
     def searchByMajor(self,major):
-        return jobs.getJobsFromIds(self.jobs.getJobOffersFromMajor(major))
+        return self.jobs.getJobsFromIds(self.jobs.getJobOffersFromMajor(major))
 
     def searchBySkills(self,skill):
-        return jobs.getJobsFromIds(self.jobs.getJobOffersBasedOnSkillsNeeded(skill))
+        return self.jobs.getJobsFromIds(self.jobs.getJobOffersBasedOnSkillsNeeded(skill))
 
     def searchByCompany(self,company):
-        return jobs.getJobsFromIds(self.jobs.getJobOffersFromCoumpany(company))
+        return self.jobs.getJobsFromIds(self.jobs.getJobOffersFromCoumpany(company))
 
 
 ## suite ..
