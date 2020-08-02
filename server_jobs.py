@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from hybride import hybride_job
-#from jobs import jobs
+from jobs import jobs
 from flask_pymongo import PyMongo
 from functools import wraps
 
@@ -29,8 +29,8 @@ bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 
 
-#job = jobs()
-
+job = jobs()
+print(job.getJobOffersFromMajor("Java Developer"))
 jobs = hybride_job()
 
 #print(jobs.searchByCity("JavaDeveloper")[:10])
@@ -285,7 +285,7 @@ def recommendedBySkills(skills):
 # Route /job/recommended/majors/
 @app.route('/job/recommended/majors/<majors>', methods=('GET', 'POST'))
 def recommendedByMajors(majors):
-    return json.dumps(jobs.searchByMajor(majors)[:1])
+    return json.dumps(jobs.searchByMajor(majors)[:10])
 
 # Route /job/recommended/city/
 @app.route('/job/recommended/city/<city>', methods=('GET', 'POST'))

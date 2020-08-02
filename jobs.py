@@ -38,6 +38,21 @@ class jobs():
             listJobs=listJobs+self.jobs[self.jobs['jobId']==id].values.tolist()
         return listJobs
 
+    def getJobFromIds(self,ids):
+        liste=[]
+        liste2=[]
+        for id in ids :
+            liste=liste+self.jobs[self.jobs['jobId']==id].values.tolist()
+        for elem in liste :
+            elem.pop(0)
+            elem.pop(2)
+            elem.pop(4)
+            elem.pop(4)
+            elem.pop(4)
+            liste2=liste2+elem
+        return liste2
+
+
     def getJobsOfferInACity(self,city):
         jobs=self.jobs[self.jobs['Location']==city]
         return jobs['jobId'].to_list()
