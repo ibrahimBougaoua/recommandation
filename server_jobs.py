@@ -287,6 +287,11 @@ def recommendedBySkills(skills):
 def recommendedByMajors(majors):
     return json.dumps(jobs.searchByMajor(majors)[:10])
 
+# Route /job/recommended/city/
+@app.route('/job/recommended/city/<city>', methods=('GET', 'POST'))
+def recommendedByCity(city):
+    return json.dumps(jobs.searchByCity(city)[:10])
+
 ##############################################################################################################
 
 if __name__ == '__main__':
