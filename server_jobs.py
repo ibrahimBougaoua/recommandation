@@ -277,10 +277,15 @@ def searchMovies():
 
     return json.dumps(jobSearch)
 
-# Route /job/search Page
-@app.route('/job/search/skills', methods=('GET', 'POST'))
-def recommendedBySkills():
-    return json.dumps(jobs.searchBySkills(search)[:10])
+# Route /job/recommended/skills/
+@app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
+def recommendedBySkills(skills):
+    return json.dumps(jobs.searchBySkills(skills)[:10])
+
+# Route /job/recommended/majors/
+@app.route('/job/recommended/majors/<majors>', methods=('GET', 'POST'))
+def recommendedByMajors(majors):
+    return json.dumps(jobs.searchByMajor(majors)[:10])
 
 ##############################################################################################################
 
