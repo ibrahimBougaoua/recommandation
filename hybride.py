@@ -226,7 +226,7 @@ class hybride_job():
         return self.jobs.getJobsFromIds(self.jobs.getJobOffersFromCoumpany(title))
 
     def searchByCity(self,city):
-        return self.jobs.getJobsFromIds(self.jobs.getJobsOfferInACity(title))
+        return self.jobs.getJobsFromIds(self.jobs.getJobsOfferInACity(city))
 
 
 ## suite ..

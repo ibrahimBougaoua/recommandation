@@ -285,7 +285,7 @@ def recommendedBySkills(skills):
 # Route /job/recommended/majors/
 @app.route('/job/recommended/majors/<majors>', methods=('GET', 'POST'))
 def recommendedByMajors(majors):
-    return json.dumps(jobs.searchByMajor(majors)[:10])
+    return json.dumps(jobs.searchByMajor(majors)[:1])
 
 # Route /job/recommended/city/
 @app.route('/job/recommended/city/<city>', methods=('GET', 'POST'))
