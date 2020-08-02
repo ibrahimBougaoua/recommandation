@@ -33,8 +33,9 @@ mongo  = PyMongo(app)
 
 jobs = hybride_job()
 
-#print(jobs.searchByMajor("Java Developer")[:10])
-print(jobs.searchBySkills("R")[:10])
+#print(jobs.searchByCity("JavaDeveloper")[:10])
+print(jobs.searchByMajor("Java Developer")[:10])
+#print(jobs.searchBySkills("R")[:10])
 
 ######################################################## Jobs Service ######################################################
 
@@ -275,6 +276,11 @@ def searchMovies():
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     return json.dumps(jobSearch)
+
+# Route /job/search Page
+@app.route('/job/search/skills', methods=('GET', 'POST'))
+def recommendedBySkills():
+    return json.dumps(jobs.searchBySkills(search)[:10])
 
 ##############################################################################################################
 
