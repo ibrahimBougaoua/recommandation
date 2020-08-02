@@ -40,7 +40,7 @@ class jobs():
 
     def getJobFromIds(self,ids):
         liste=[]
-        liste2=[]
+        liste2=array()
         for id in ids :
             liste=liste+self.jobs[self.jobs['jobId']==id].values.tolist()
         for elem in liste :
@@ -49,7 +49,7 @@ class jobs():
             elem.pop(4)
             elem.pop(4)
             elem.pop(4)
-            liste2=liste2+elem
+            liste2.append(elem)
         return liste2
 
 
