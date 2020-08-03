@@ -169,7 +169,7 @@ def getUserInformation(email):
 
     return json.dumps(['get User Information is invalid'])
 
-
+# Route /job/user/update/
 @app.route('/job/user/update/<user_email>', methods=('GET','POST'))
 def updateUserInformation(user_email):
 
@@ -249,8 +249,6 @@ def login_jwt():
             }
             return jsonify(ret), 200
     return make_response('Could not verify',401,{'WWW-Authenticate':'Basic releam="Login required"'})
-
-
 
 # Route /job/search Page
 @app.route('/job/search/', methods=('GET', 'POST'))
