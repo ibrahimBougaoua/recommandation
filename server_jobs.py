@@ -275,7 +275,7 @@ def searchMovies():
         if user is None:
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
-    return json.dumps(jobSearch)
+    return {jobSearch}
 
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
