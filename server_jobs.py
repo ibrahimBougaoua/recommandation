@@ -64,6 +64,7 @@ def token_required(f):
 
     return decorated
 
+# Route /unprotected/
 @app.route('/unprotected', methods=('GET','POST'))
 def unprotected():
     return jsonify({'message':'show enable'})
