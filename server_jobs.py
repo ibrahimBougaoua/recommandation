@@ -151,6 +151,7 @@ def singup():
 
     return make_response('Could not verify',401,{'WWW-Authenticate':'Basic releam="Login required"'})
 
+# Route /job/user/information/
 @app.route('/job/user/information/<email>', methods=('GET','POST'))
 def getUserInformation(email):
     user_find = mongo.db.user.find_one({"email": email})
