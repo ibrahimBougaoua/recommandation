@@ -68,12 +68,14 @@ def token_required(f):
 def unprotected():
     return jsonify({'message':'show enable'})
 
+# Route /protected/
 @app.route('/protected', methods=('GET','POST'))
 @token_required
 def protected(user):
     print(user)
     return jsonify({'message':'show disable'})
 
+# Route /job/singup/
 @app.route('/job/singup/', methods=('GET','POST'))
 def singup():
 
