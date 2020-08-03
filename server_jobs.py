@@ -170,7 +170,7 @@ def getUserInformation(email):
     return json.dumps(['get User Information is invalid'])
 
 
-@app.route('/movie/user/update/<user_email>', methods=('GET','POST'))
+@app.route('/job/user/update/<user_email>', methods=('GET','POST'))
 def updateUserInformation(user_email):
 
     error = []
@@ -179,6 +179,8 @@ def updateUserInformation(user_email):
     lastname = request.args.get("lastname")
     email = request.args.get("email")
     password = request.args.get("password")
+    sex = request.args.get("majors")
+    sex = request.args.get("skills")
     sex = request.args.get("sex")
     age = request.args.get("age")
     country = request.args.get("country")
