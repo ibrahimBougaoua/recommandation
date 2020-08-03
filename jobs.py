@@ -7,6 +7,7 @@ class jobs():
     """docstring for jobs"""
     def __init__(self):
         self.jobs=init.jobs
+        self.jobs.fillna("Rien")
         self.cosine_sim=self.train()
 
     def train(self):
@@ -40,7 +41,7 @@ class jobs():
 
     def getJobFromIds(self,ids):
         liste=[]
-        liste2=array()
+        liste2=[]
         for id in ids :
             liste=liste+self.jobs[self.jobs['jobId']==id].values.tolist()
         for elem in liste :
