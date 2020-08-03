@@ -43,6 +43,7 @@ print(jobs.searchByMajor("Java Developer")[:10])
 def test():
     return jobs.jobById()
 
+# function token_required
 def token_required(f):
     @wraps(f)
     def decorated(*args,**kwargs):
