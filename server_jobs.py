@@ -151,7 +151,7 @@ def singup():
 
     return make_response('Could not verify',401,{'WWW-Authenticate':'Basic releam="Login required"'})
 
-@app.route('/movie/user/information/<email>', methods=('GET','POST'))
+@app.route('/job/user/information/<email>', methods=('GET','POST'))
 def getUserInformation(email):
     user_find = mongo.db.user.find_one({"email": email})
     if user_find:
@@ -160,6 +160,8 @@ def getUserInformation(email):
         data.append(user_find["lastname"])
         data.append(user_find["email"])
         data.append(user_find["sex"])
+        data.append(user_find["majors"])
+        data.append(user_find["skills"])
         data.append(user_find["age"])
         data.append(user_find["country"])
         data.append(user_find["telephone"])
