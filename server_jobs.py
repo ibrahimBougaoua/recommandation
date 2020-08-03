@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from hybride import hybride_job
-from jobs import jobs
+#from jobs import jobs
 from flask_pymongo import PyMongo
 from functools import wraps
 
@@ -29,7 +29,7 @@ bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 
 
-job = jobs()
+#job = jobs()
 print(job.getJobOffersFromMajor("Java Developer"))
 jobs = hybride_job()
 
