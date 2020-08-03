@@ -226,6 +226,7 @@ def updateUserInformation(user_email):
         error.append('user updated successfully.')
     return json.dumps(error)
 
+# Route /job/login/
 @app.route('/job/login/', methods=('GET','POST'))
 def login_jwt():
 
