@@ -39,6 +39,7 @@ print(jobs.searchByMajor("Java Developer")[:10])
 
 ######################################################## Jobs Service ######################################################
 
+# Route /jobs/test
 @app.route('/jobs/test', methods=('GET','POST'))
 def test():
     return jobs.jobById()
