@@ -34,7 +34,7 @@ print(job.getJobOffersFromMajor("Java Developer"))
 jobs = hybride_job()
 
 #print(jobs.searchByCity("JavaDeveloper")[:10])
-print(jobs.searchByMajor("Java Developer")[:10])
+#print(jobs.searchByMajor("Java Developer")[:10])
 #print(jobs.searchBySkills("R")[:10])
 
 ######################################################## Jobs Service ######################################################
