@@ -28,9 +28,9 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/movie'
 bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 
-
 #job = jobs()
-print(job.getJobOffersFromMajor("Java Developer"))
+#print(job.getJobOffersFromMajor("Java Developer"))
+
 jobs = hybride_job()
 
 #print(jobs.searchByCity("JavaDeveloper")[:10])
