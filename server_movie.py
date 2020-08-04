@@ -167,7 +167,7 @@ def delete_Abonnement():
 @app.route('/movie/check/abonnement/user/<email>/actor/<actor>', methods=('GET','POST'))
 def ifAbonner(email,actor):
     user = mongo.db.abonnements.find_one({"email": email,"actor": actor})
-    if user is None:
+    if user is not None:
         return 'no'
     return 'yes'
 
