@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 from hybride import hybride_job
-#from jobs import jobs
+from jobs import jobs
 from flask_pymongo import PyMongo
 from functools import wraps
 
@@ -28,7 +28,7 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/movie'
 bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 
-#job = jobs()
+job = jobs()
 #print(job.getJobOffersFromMajor("Java Developer"))
 
 jobs = hybride_job()
@@ -285,6 +285,19 @@ def searchMovies():
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     return json.dumps(jobSearch)
+
+# Route /job/single/id/<int:jobId>/email/<email>
+# Route /job/single/id/<int:jobId>
+@app.route('/job/single/id/<int:jobId>/email/<email>', methods=('GET', 'POST'))
+@app.route('/job/single/id/<int:jobId>', methods=('GET', 'POST'))
+def JobSingle(jobId,email=None):
+    if email is not None: # distanct job
+        mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
+        listOfJobs = mongo.db.jobsList.find_one({"email" : email,"jobId": jobId})
+        if listOfJobs is None:
+            mongo.db.jobsList.insert({"email" : email,"jobId" : jobId })
+    return json.dumps(job.getJobFromId([jobId]))
+
 
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))

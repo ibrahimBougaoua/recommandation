@@ -45,10 +45,6 @@ class jobs():
         for id in ids :
             liste=liste+self.jobs[self.jobs['jobId']==id].values.tolist()
         for elem in liste :
-            elem.pop(0)
-            elem.pop(2)
-            elem.pop(4)
-            elem.pop(4)
             elem.pop(4)
             liste2.append(elem)
         return liste2
