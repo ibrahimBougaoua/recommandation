@@ -46,7 +46,7 @@ class jobs():
         return jobs['jobId'].to_list()
 
     def cosine_similar(self,ID):
-        
+        print(type(self.cosine_sim))
         similar_books = list(enumerate(self.cosine_sim[ID]))
         sorted_similar_books = sorted(similar_books,key=lambda x:x[1],reverse=True)[1:]
         
