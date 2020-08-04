@@ -7,7 +7,7 @@ class jobs():
     """docstring for jobs"""
     def __init__(self):
         self.jobs=init.jobs
-        self.jobs.fillna("Rien")
+        self.jobs=self.jobs.fillna("Rien")
         self.cosine_sim=self.train()
 
     def train(self):
