@@ -304,14 +304,12 @@ def AbonnementsComany(email):
     return json.dumps(data)
 
 # Route /job/abonnements/new
-@app.route('/job/abonnement/new', methods=('GET','POST'))
-def new_Abonnement():
-    _email = request.args.get("_email")
-    _company = request.args.get("_company")
-    user = mongo.db.abonnementsCompany.find_one({"email": _email,"company": _company})
+@app.route('/job/abonnement/new/email/<email>/company/<company>', methods=('GET','POST'))
+def new_Abonnement(email,company):
+    user = mongo.db.abonnementsCompany.find_one({"email": email,"company": company})
     if user is None:
         mongodb = mongo.db.abonnementsCompany
-        mongodb.insert({"email": _email,"company": _company})
+        mongodb.insert({"email": email,"company": company})
         return 'Abonnement added successfully !'
 
     return 'abonnement already exists !'
@@ -331,10 +329,10 @@ def delete_Abonnement():
 @app.route('/job/check/abonnement/user/<email>/company/<company>', methods=('GET','POST'))
 def ifAbonner(email,company):
     user = mongo.db.abonnementsCompany.find_one({"email": email,"company": company})
-    if user is not None:
+    if user is None:
         return 'no'
     return 'yes'
-    
+
 # Route /job/check/showlater/user/<email>/id/<jobId>
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
