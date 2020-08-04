@@ -324,6 +324,15 @@ def delete_show_later():
 
     return 'show later delete successfully !'
 
+
+
+
+# Route /job/recommended/skills/
+@app.route('/job/related/id/<int:jobId>', methods=('GET', 'POST'))
+def MovieRelatedMovies(movieId):
+    relatedjobs=jobs.job_similar(jobId)
+    return json.dumps(relatedjobs[:16])
+    
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
 def recommendedBySkills(skills):
