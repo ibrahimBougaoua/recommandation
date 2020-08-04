@@ -10,12 +10,17 @@ class jobs():
         self.jobs=self.jobs.fillna("Rien")
         self.cosine_sim=self.train()
 
+
     def train(self):
 
         cv = CountVectorizer() 
         count_matrix = cv.fit_transform(self.jobs["combined_features"])    
         cosine_sim = cosine_similarity(count_matrix)    
 
+        print(type(cv))
+        print(type(count_matrix))
+        print(type(cosine_sim))
+        
     def getJobOffersFromCoumpany(self,company):
         jobs=self.jobs[self.jobs["Company"]==company]
         return jobs['jobId'].to_list()  
