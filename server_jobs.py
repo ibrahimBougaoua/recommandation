@@ -299,19 +299,27 @@ def JobSingle(jobId,email=None):
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
     user = mongo.db.jobsList.find_one({"email": email,"jobId": jobId})
-    if user is None:
+    if user is not None:
         return 'no'
     return 'yes'
 
-# Route /job/showlater/new/email/<email>/id/<int:_id>
-@app.route('/job/showlater/new/email/<email>/id/<int:_id>', methods=('GET','POST'))
-def new_show_later(email,_id):
+# Route /job/showlater/new/email/<email>/id/<int:jobId>
+@app.route('/job/showlater/new/email/<email>/id/<int:jobId>', methods=('GET','POST'))
+def new_show_later(email,jobId):
     listOfJobs = mongo.db.jobsList.find_one({"email" : email,"jobId": jobId})
     if listOfJobs is None:
         mongo.db.jobsList.insert({"email" : email,"jobId" : jobId })
         return 'job added successfully !'
 
     return 'job already exists !'
+
+# Route /job/showlater/email api Page
+@app.route('/job/showlater/<email>')
+def show_list(email):
+    data = []
+    for x in mongo.db.jobsList.find({"email": email},{ "_id": 0, "jobId": 1}):
+        data.append(x)
+    return json.dumps(job.getJobFromIds(data))
 
 # Route /job/showlater/delete
 @app.route('/job/showlater/delete', methods=('GET','POST'))
@@ -327,7 +335,7 @@ def delete_show_later():
 # Route /job/related/skills/
 @app.route('/job/related/id/<int:jobId>', methods=('GET', 'POST'))
 def relatedJobs(jobId):
-    return json.dumps(job.cosine_similar(jobId))
+    return json.dumps(job.getJobFromIds([1,2,3,4,5,6]))#json.dumps(job.cosine_similar(jobId))
 
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
