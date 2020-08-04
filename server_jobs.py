@@ -300,7 +300,8 @@ def JobSingle(jobId,email=None):
 def AbonnementsComany(email):
     data = []
     for x in mongo.db.abonnementsCompany.find({"email": email},{ "_id": 0, "email": 1, "company": 1 }):
-        data.append(jobs.searchByCompany(x["company"]))
+        arr = jobs.searchByCompany(x["company"])
+        data.append(arr[0])
     return json.dumps(data)
 
 # Route /job/abonnements/new
