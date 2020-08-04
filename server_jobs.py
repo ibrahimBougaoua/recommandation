@@ -293,11 +293,25 @@ def searchMovies():
 def JobSingle(jobId,email=None):
     if email is not None: # distanct job
         mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
-        listOfJobs = mongo.db.jobsList.find_one({"email" : email,"jobId": jobId})
-        if listOfJobs is None:
-            mongo.db.jobsList.insert({"email" : email,"jobId" : jobId })
     return json.dumps(job.getJobFromId([jobId]))
 
+# Route /job/check/showlater/user/<email>/id/<_id>
+@app.route('/job/check/showlater/user/<email>/id/<_id>', methods=('GET','POST'))
+def ifShowlater(email,_id):
+    user = mongo.db.jobsList.find_one({"email": email,"jobId": _id})
+    if user is None:
+        return 'no'
+    return 'yes'
+
+# Route /job/showlater/new/email/<email>/id/<int:_id>
+@app.route('/job/showlater/new/email/<email>/id/<int:_id>', methods=('GET','POST'))
+def new_show_later(email,_id):
+    listOfJobs = mongo.db.jobsList.find_one({"email" : email,"jobId": jobId})
+    if listOfJobs is None:
+        mongo.db.jobsList.insert({"email" : email,"jobId" : jobId })
+        return 'job added successfully !'
+
+    return 'job already exists !'
 
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
