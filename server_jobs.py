@@ -333,6 +333,11 @@ def ifAbonner(email,company):
         return 'no'
     return 'yes'
 
+# Route /movie/abonnements/company
+@app.route('/job/abonnements/company/<company>')
+def jobsByCompany(company):
+    return json.dumps(jobs.searchByCompany(company))
+
 # Route /job/check/showlater/user/<email>/id/<jobId>
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
