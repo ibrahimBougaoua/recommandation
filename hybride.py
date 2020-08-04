@@ -228,6 +228,8 @@ class hybride_job():
     def searchByCity(self,city):
         return self.jobs.getJobFromIds(self.jobs.getJobsOfferInACity(city))
 
+    def job_similar(self,id):
+        return self.jobs.cosine_similar(id)
 
 ## suite ..
 #.
