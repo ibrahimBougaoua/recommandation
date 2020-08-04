@@ -327,6 +327,14 @@ def delete_Abonnement():
 
     return 'abonnement delete successfully !'
 
+# Route /job/check/abonnement/user/<email>/company/<company>
+@app.route('/job/check/abonnement/user/<email>/company/<company>', methods=('GET','POST'))
+def ifAbonner(email,company):
+    user = mongo.db.abonnementsCompany.find_one({"email": email,"company": company})
+    if user is not None:
+        return 'no'
+    return 'yes'
+    
 # Route /job/check/showlater/user/<email>/id/<jobId>
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
