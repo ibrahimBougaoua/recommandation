@@ -293,7 +293,7 @@ def searchMovies():
 def JobSingle(jobId,email=None):
     if email is not None: # distanct job
         mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
-    return json.dumps(job.getJobFromId([jobId]))
+    return json.dumps(job.getJobFromId(jobId))
 
 # Route /job/check/showlater/user/<email>/id/<_id>
 @app.route('/job/check/showlater/user/<email>/id/<_id>', methods=('GET','POST'))
@@ -324,15 +324,11 @@ def delete_show_later():
 
     return 'show later delete successfully !'
 
-
-
-
-# Route /job/recommended/skills/
+# Route /job/related/skills/
 @app.route('/job/related/id/<int:jobId>', methods=('GET', 'POST'))
-def MovieRelatedMovies(movieId):
-    relatedjobs=jobs.job_similar(jobId)
-    return json.dumps(relatedjobs[:16])
-    
+def relatedJobs(jobId):
+    return json.dumps(jobs.job_similar(jobId))
+
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
 def recommendedBySkills(skills):
