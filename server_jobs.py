@@ -303,6 +303,19 @@ def AbonnementsComany(email):
         data.append(jobs.searchByCompany(x["company"]))
     return json.dumps(data)
 
+# Route /job/abonnements/new
+@app.route('/job/abonnement/new', methods=('GET','POST'))
+def new_Abonnement():
+    _email = request.args.get("_email")
+    _company = request.args.get("_company")
+    user = mongo.db.abonnementsCompany.find_one({"email": _email,"company": _company})
+    if user is None:
+        mongodb = mongo.db.abonnementsCompany
+        mongodb.insert({"email": _email,"company": _company})
+        return 'Abonnement added successfully !'
+
+    return 'abonnement already exists !'
+
 # Route /job/check/showlater/user/<email>/id/<jobId>
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
