@@ -295,6 +295,14 @@ def JobSingle(jobId,email=None):
         mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
     return json.dumps(job.getJobFromIds([jobId]))
 
+# Route /movie/abonnements/
+@app.route('/job/abonnements/user/<email>')
+def AbonnementsComany(email):
+    data = []
+    for x in mongo.db.abonnementsCompany.find({"email": email},{ "_id": 0, "email": 1, "company": 1 }):
+        data.append(jobs.searchByCompany(x["company"]))
+    return json.dumps(data)
+
 # Route /job/check/showlater/user/<email>/id/<jobId>
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
