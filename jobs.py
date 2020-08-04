@@ -30,15 +30,6 @@ class jobs():
     
         return jobs['jobId'].to_list()
 
-    def getJobFromId(self,id):
-        return self.jobs[self.jobs['jobId']==id]
-
-    def getJobsFromIds(self,Ids):
-        listJobs=[]
-        for id in Ids :
-            listJobs=listJobs+self.jobs[self.jobs['jobId']==id].values.tolist()
-        return listJobs
-
     def getJobFromIds(self,ids):
         liste=[]
         liste2=[]
