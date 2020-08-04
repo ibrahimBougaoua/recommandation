@@ -318,7 +318,8 @@ def new_show_later(email,jobId):
 def show_list(email):
     data = []
     for x in mongo.db.jobsList.find({"email": email},{ "_id": 0, "jobId": 1}):
-        data.append(x)
+        data.append(x['jobId'])
+    print(data)
     return json.dumps(job.getJobFromIds(data))
 
 # Route /job/showlater/delete
