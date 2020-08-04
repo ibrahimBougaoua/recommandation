@@ -313,6 +313,17 @@ def new_show_later(email,_id):
 
     return 'job already exists !'
 
+# Route /job/showlater/delete
+@app.route('/job/showlater/delete', methods=('GET','POST'))
+def delete_show_later():
+    _email = request.args.get("_email")
+    _id = request.args.get("_id")
+    user = mongo.db.jobsList.delete_one({"email": _email,"jobId": _id})
+    if user is None:
+        return 'show later no delete successfully !'
+
+    return 'show later delete successfully !'
+
 # Route /job/recommended/skills/
 @app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
 def recommendedBySkills(skills):
