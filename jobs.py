@@ -51,6 +51,9 @@ class jobs():
 
     def getJotTitlesFromAComany(company):
         return self.jobs[self.jobs['Company']==company]['Title'].value_counts().keys().tolist()
+        
+    def getJobsFromAComapnyAndATitle(company,title):
+        return self.jobs[(self.jobs['Company']==company) & (self.jobs['Title']==title)]['jobId'].values.tolist()
 
     def cosine_similar(self,ID):
         print(type(self.cosine_sim))
