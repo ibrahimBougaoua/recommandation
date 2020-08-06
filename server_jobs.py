@@ -399,6 +399,11 @@ def relatedJobs(jobId):
 def getJobTitlesComany(company):
     return json.dumps(job.getJobTitlesFromAComany(company))
 
+# Route /job/company/company/<company>/title/<title>
+@app.route('/job/company/company/<company>/title/<title>', methods=('GET', 'POST'))
+def getJobsComapnyAndATitle(company,title):
+    return json.dumps(job.getJobsFromAComapnyAndATitle(company,title))
+
 # Route /job/recommended/skills/<email>
 @app.route('/job/recommended/skills/<email>', methods=('GET', 'POST'))
 def recommendedBySkills(email):
