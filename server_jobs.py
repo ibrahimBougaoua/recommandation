@@ -295,7 +295,7 @@ def JobSingle(jobId,email=None):
         mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
     return json.dumps(job.getJobFromIds([jobId]))
 
-# Route /movie/abonnements/
+# Route /job/abonnements/
 @app.route('/job/abonnements/user/<email>')
 def AbonnementsComany(email):
     data = []
@@ -304,6 +304,17 @@ def AbonnementsComany(email):
         #data.append(arr[0])
         data.append(x["company"])
     return json.dumps(data)
+
+# Route /job/abonnements/alljobs/email/<email>
+@app.route('/job/abonnements/alljobs/email/<email>')
+def AbonnementsAllJobsByComany(email):
+    ids = []
+    for x in mongo.db.abonnementsCompany.find({"email": email},{ "_id": 0, "email": 1, "company": 1 }):
+        arr = job.getJobOffersFromCoumpany(x["company"])[:10]
+        print(arr)
+        ids.append(arr[0])
+
+    return json.dumps(job.getJobFromIds(ids))
 
 # Route /job/abonnements/new
 @app.route('/job/abonnement/new/email/<email>/company/<company>', methods=('GET','POST'))
@@ -383,10 +394,13 @@ def delete_show_later():
 def relatedJobs(jobId):
     return json.dumps(job.getJobFromIds([1,2,3,4,5,6]))#json.dumps(job.cosine_similar(jobId))
 
-# Route /job/recommended/skills/
-@app.route('/job/recommended/skills/<skills>', methods=('GET', 'POST'))
-def recommendedBySkills(skills):
-    return json.dumps(jobs.searchBySkills(skills)[:10])
+# Route /job/recommended
+@app.route('/job/recommended/skills', methods=('GET', 'POST'))
+def recommendedBySkills():
+    data = []
+    for x in mongo.db.jobSkills.find({"email": email},{ "_id": 0, "skills": 1}):
+        data.append(x["skills"])
+    return json.dumps(jobs.searchBySkills(random.choice(data))[:10])
 
 # Route /job/recommended/majors/
 @app.route('/job/recommended/majors/<majors>', methods=('GET', 'POST'))
