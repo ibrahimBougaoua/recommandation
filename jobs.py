@@ -49,10 +49,10 @@ class jobs():
         jobs=self.jobs[self.jobs['Location']==city]
         return jobs['jobId'].to_list()
 
-    def getJobTitlesFromAComany(company):
+    def getJobTitlesFromAComany(self,company):
         return self.jobs[self.jobs['Company']==company]['Title'].value_counts().keys().tolist()
 
-    def getJobsFromAComapnyAndATitle(company,title):
+    def getJobsFromAComapnyAndATitle(self,company,title):
         return self.jobs[(self.jobs['Company']==company) & (self.jobs['Title']==title)]['jobId'].values.tolist()
 
     def cosine_similar(self,ID):
