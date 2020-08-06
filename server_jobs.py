@@ -360,7 +360,7 @@ def ifShowlater(email,jobId):
     return 'yes'
 
 # Route /job/showlater/new/email/<email>/id/<int:jobId>
-@app.route('/job/showlater/new/email/<email>/id/<int:jobId>', methods=('GET','POST'))
+@app.route('/job/showlater/new/email/<email>/id/<jobId>', methods=('GET','POST'))
 def new_show_later(email,jobId):
     listOfJobs = mongo.db.jobsList.find_one({"email" : email,"jobId": jobId})
     if listOfJobs is None:
