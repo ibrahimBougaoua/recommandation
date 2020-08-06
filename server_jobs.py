@@ -291,7 +291,7 @@ def searchMovies():
 @app.route('/job/single/id/<int:jobId>/email/<email>', methods=('GET', 'POST'))
 @app.route('/job/single/id/<int:jobId>', methods=('GET', 'POST'))
 def JobSingle(jobId,email=None):
-    if email is not None: # distanct job
+    if email is not None:
         mongo.db.jobsViews.insert({"email" : email,"jobId" : jobId ,"date":datetime.datetime.now()})
     return json.dumps(job.getJobFromIds([jobId]))
 
@@ -399,10 +399,19 @@ def relatedJobs(jobId):
 def getJobTitlesComany(company):
     return json.dumps(job.getJobTitlesFromAComany(company))
 
-# Route /job/company/company/<company>/title/<title>
-@app.route('/job/company/company/<company>/title/<title>', methods=('GET', 'POST'))
+# Route /job/company/<company>/title/<title>
+@app.route('/job/company/<company>/title/<title>', methods=('GET', 'POST'))
 def getJobsComapnyAndATitle(company,title):
-    return json.dumps(job.getJobsFromAComapnyAndATitle(company,title))
+    print(job.getJobFromIds(job.getJobsFromAComapnyAndATitle(company,title)))
+    return json.dumps(job.getJobFromIds(job.getJobsFromAComapnyAndATitle(company,title)))
+
+# Route /job/history/views/email/<email>
+@app.route('/job/history/views/email/<email>', methods=('GET', 'POST'))
+def jobHistoryViews(email=None):
+    data = []
+    for x in mongo.db.jobsViews.find({"email": email},{ "_id": 0, "jobId": 1}):
+        data.append(x['jobId'])
+    return json.dumps(job.getJobFromIds(data))
 
 # Route /job/recommended/skills/<email>
 @app.route('/job/recommended/skills/<email>', methods=('GET', 'POST'))
