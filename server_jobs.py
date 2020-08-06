@@ -399,7 +399,7 @@ def relatedJobs(jobId):
 def recommendedBySkills(email):
     data = []
     for x in mongo.db.jobSkills.find({"email": email},{ "_id": 0, "skills": 1}):
-        data.append(x["skills"])
+        data.append(x['skills'])
     return json.dumps(jobs.searchBySkills(random.choice(data))[:10])
 
 # Route /job/recommended/majors/<email>
@@ -407,7 +407,7 @@ def recommendedBySkills(email):
 def recommendedByMajors(email):
     data = []
     for x in mongo.db.jobMajors.find({"email": email},{ "_id": 0, "majors": 1}):
-        data.append(x["majors"])
+        data.append(x['majors'])
     return json.dumps(jobs.searchByMajor(random.choice(data))[:10])
 
 # Route /job/recommended/city/
