@@ -20,7 +20,7 @@ class jobs():
         print(type(cv))
         print(type(count_matrix))
         print(type(cosine_sim))
-        
+
     def getJobOffersFromCoumpany(self,company):
         jobs=self.jobs[self.jobs["Company"]==company]
         return jobs['jobId'].to_list()  
@@ -45,10 +45,12 @@ class jobs():
             liste2.append(elem)
         return liste2
 
-
     def getJobsOfferInACity(self,city):
         jobs=self.jobs[self.jobs['Location']==city]
         return jobs['jobId'].to_list()
+
+    def getJotTitlesFromAComany(company):
+        return self.jobs[self.jobs['Company']==company]['Title'].value_counts().keys().tolist()
 
     def cosine_similar(self,ID):
         print(type(self.cosine_sim))
