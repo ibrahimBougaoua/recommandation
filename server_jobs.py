@@ -394,7 +394,7 @@ def delete_show_later():
 def relatedJobs(jobId):
     return json.dumps(job.getJobFromIds([1,2,3,4,5,6]))#json.dumps(job.cosine_similar(jobId))
 
-# Route /job/recommended
+# Route /job/recommended/skills
 @app.route('/job/recommended/skills', methods=('GET', 'POST'))
 def recommendedBySkills():
     data = []
@@ -402,10 +402,13 @@ def recommendedBySkills():
         data.append(x["skills"])
     return json.dumps(jobs.searchBySkills(random.choice(data))[:10])
 
-# Route /job/recommended/majors/
-@app.route('/job/recommended/majors/<majors>', methods=('GET', 'POST'))
-def recommendedByMajors(majors):
-    return json.dumps(jobs.searchByMajor(majors)[:10])
+# Route /job/recommended/majors
+@app.route('/job/recommended/majors', methods=('GET', 'POST'))
+def recommendedByMajors():
+    data = []
+    for x in mongo.db.jobMajors.find({"email": email},{ "_id": 0, "majors": 1}):
+        data.append(x["majors"])
+    return json.dumps(jobs.searchByMajor(random.choice(data))[:10])
 
 # Route /job/recommended/city/
 @app.route('/job/recommended/city/<city>', methods=('GET', 'POST'))
