@@ -49,9 +49,9 @@ class jobs():
         jobs=self.jobs[self.jobs['Location']==city]
         return jobs['jobId'].to_list()
 
-    def getJotTitlesFromAComany(company):
+    def getJobTitlesFromAComany(company):
         return self.jobs[self.jobs['Company']==company]['Title'].value_counts().keys().tolist()
-        
+
     def getJobsFromAComapnyAndATitle(company,title):
         return self.jobs[(self.jobs['Company']==company) & (self.jobs['Title']==title)]['jobId'].values.tolist()
 

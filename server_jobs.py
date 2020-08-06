@@ -394,6 +394,11 @@ def delete_show_later():
 def relatedJobs(jobId):
     return json.dumps(job.getJobFromIds([1,2,3,4,5,6]))#json.dumps(job.cosine_similar(jobId))
 
+# Route /job/company/titles/<company>
+@app.route('/job/company/titles/<company>', methods=('GET', 'POST'))
+def getJobTitlesComany(company):
+    return json.dumps(job.getJobTitlesFromAComany(company))
+
 # Route /job/recommended/skills/<email>
 @app.route('/job/recommended/skills/<email>', methods=('GET', 'POST'))
 def recommendedBySkills(email):
