@@ -355,7 +355,7 @@ def jobsByCompany(company):
 @app.route('/job/check/showlater/user/<email>/id/<jobId>', methods=('GET','POST'))
 def ifShowlater(email,jobId):
     user = mongo.db.jobsList.find_one({"email": email,"jobId": jobId})
-    if user is not None:
+    if user is None:
         return 'no'
     return 'yes'
 
