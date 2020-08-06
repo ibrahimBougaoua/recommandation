@@ -183,15 +183,11 @@ def updateUserInformation(user_email):
     lastname = request.args.get("lastname")
     email = request.args.get("email")
     password = request.args.get("password")
-    sex = request.args.get("majors")
-    sex = request.args.get("skills")
-    sex = request.args.get("sex")
+    sexe = request.args.get("sexe")
     age = request.args.get("age")
-    country = request.args.get("country")
+    city = request.args.get("city")
     telephone = request.args.get("telephone")
 
-    
-    
     #email_find = mongo.db.users.find_one({"email": email})
     #telephone_find = mongo.db.users.find_one({"telephone": telephone})
 
@@ -204,29 +200,28 @@ def updateUserInformation(user_email):
     if not email:
         error.append('email is empty.')
 
-    if not sex:
-        error.append('sex is empty.')
+    if not sexe:
+        error.append('sexe is empty.')
 
     if not age:
         error.append('age is empty.')
 
-    if not country:
-        error.append('country is empty.')
+    if not city:
+        error.append('city is empty.')
 
     if not telephone:
         error.append('telephone is empty.')
-
     
     if error:
         return make_response('Could not verify',401,{'WWW-Authenticate':'Basic releam="Login required"'})
     else:
-        mongodb   = mongo.db.user
+        mongodb = mongo.db.user
         if not password:
             user = mongo.db.user.find_one({"email": user_email})
-            mongodb.update_one({'email': user_email},{'$set': { "fisrtname" : fisrtname, "lastname" : lastname, "email" : email, "password" : user["password"],"sex" : sex, "age" : age, "country" : country, "telephone" : telephone }}, upsert=False)
+            mongodb.update_one({'email': user_email},{'$set': { "fisrtname" : fisrtname, "lastname" : lastname, "email" : email,"sexe" : sexe, "age" : age, "city" : city, "telephone" : telephone }}, upsert=False)
         else:
             password = bcrypt.generate_password_hash(password)
-            mongodb.update_one({'email': user_email},{'$set': { "fisrtname" : fisrtname }}, upsert=False)
+            mongodb.update_one({'email': user_email},{'$set': { "fisrtname" : fisrtname, "lastname" : lastname, "email" : email, "password" : password,"sexe" : sexe, "age" : age, "city" : city, "telephone" : telephone }}, upsert=False)
         error.append('user updated successfully.')
     return json.dumps(error)
 
