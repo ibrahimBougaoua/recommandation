@@ -544,14 +544,14 @@ def dashboardChartPie():
     data = [5415,1128,2413,2470,305,539,423,173,756,364,828,1343]
     return json.dumps([labels,data])
 
-# Route /dashboard/chart api Page
+# Route /dashboard/chart/line api Page
 @app.route('/dashboard/chart/line', methods=('GET', 'POST'))
 def dashboardChartLine():
     labels = ['adventure','animation','children','comedy','fantasy','children','fantasy','romance','drama','action','crime','thriller','horror','mystery','sci-Fi','documentary','imax']
     data = [5415,1128,2413,2470,305,539,423,173,756,364,828,1343,173,756,364,828,1343]
     return json.dumps([labels,data])
 
-# Route /dashboard/chart api Page
+# Route /dashboard/chart/horizontalBar api Page
 @app.route('/dashboard/chart/horizontalBar', methods=('GET', 'POST'))
 def dashboardChartHorizontalBar():
     labels = ['Toy Story','Jumanji','Grumpier Old Men','Waiting to Exhale','Heat','Sabrina','GoldenEye','Nixon','Balto','Copycat','Assassins']
