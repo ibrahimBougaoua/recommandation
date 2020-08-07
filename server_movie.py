@@ -474,6 +474,7 @@ def moviesActors(email=None):
                 data.append(demo)
     return json.dumps(data)
 
+# Route /movie/history/tag/email/<email> api Page
 @app.route('/movie/history/tag/email/<email>', methods=('GET', 'POST'))
 def moviesTag(email=None):
     data = []
