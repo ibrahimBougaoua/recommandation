@@ -422,6 +422,7 @@ def MovieSingle(movieId,email=None):
     
     return json.dumps(movies.movies.getMoviesFromIds([movieId]))
 
+# Route /movie/single/id/<int:movieId>/rating/<int:rating>/email/<email> api Page
 @app.route('/movie/single/id/<int:movieId>/rating/<int:rating>/email/<email>', methods=('GET', 'POST'))
 def MovieRating(movieId,rating=None,email=None):
     if rating != None :
