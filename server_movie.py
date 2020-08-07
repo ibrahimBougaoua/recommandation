@@ -129,12 +129,12 @@ def Abonnements(email):
     
     return json.dumps(data)
 
-# Route /movie/abonnements/email api Page
+# Route /movie/abonnements/actor/<actor> api Page
 @app.route('/movie/abonnements/actor/<actor>')
 def moviesActor(actor):
     return json.dumps(movies.moviesByAbonnements(actor))
 
-# Route /movie/abonnements/actors api Page
+# Route //movie/abonnements/user/<email> api Page
 @app.route('/movie/abonnements/user/<email>')
 def AbonnementsActors(email):
     actors = []
@@ -142,6 +142,7 @@ def AbonnementsActors(email):
         actors.append(x["actor"])
     return json.dumps(actors)
 
+# Route /movie/abonnement/new api Page
 @app.route('/movie/abonnement/new', methods=('GET','POST'))
 def new_Abonnement():
     _email = request.args.get("_email")
@@ -154,6 +155,7 @@ def new_Abonnement():
 
     return 'abonnement already exists !'
 
+# Route /movie/abonnement/delete api Page
 @app.route('/movie/abonnement/delete', methods=('GET','POST'))
 def delete_Abonnement():
     _email = request.args.get("_email")
