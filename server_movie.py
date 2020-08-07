@@ -191,6 +191,7 @@ def ifShowlater(email,_id):
         return 'no'
     return 'yes'
 
+# Route /movie/showlater/delete api Page
 @app.route('/movie/showlater/delete', methods=('GET','POST'))
 def delete_show_later():
     _email = request.args.get("_email")
@@ -202,7 +203,7 @@ def delete_show_later():
 
     return 'show later delete successfully !'
 
-# Route /movie/showlater/email api Page
+# Route /movie/showlater/<email> api Page
 @app.route('/movie/showlater/<email>')
 def show_list(email):
     data = []
@@ -213,6 +214,7 @@ def show_list(email):
     print(data)
     return json.dumps(movies.movies.getMoviesFromIds(data))
 
+# Route /movie/singup/ api Page
 @app.route('/movie/singup/', methods=('GET','POST'))
 def singup():
 
@@ -283,6 +285,7 @@ def singup():
 
     return make_response('Could not verify',401,{'WWW-Authenticate':'Basic releam="Login required"'})
 
+# Route /movie/user/information/<email> api Page
 @app.route('/movie/user/information/<email>', methods=('GET','POST'))
 def getUserInformation(email):
     user_find = mongo.db.user.find_one({"email": email})
