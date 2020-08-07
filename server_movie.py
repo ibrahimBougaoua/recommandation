@@ -406,20 +406,21 @@ def searchMovies():
 
     return json.dumps(moviesSearch)
 
+# Route /movie/related/id/<int:movieId> api Page
 @app.route('/movie/related/id/<int:movieId>', methods=('GET', 'POST'))
 def MovieRelatedMovies(movieId):
     relatedMovies=movies.similaireToMovie(movieId)
     return json.dumps(relatedMovies[:16])
 
+# Route /movie/single/id/<int:movieId>/email/<email> api Page
+# Route /movie/single/id/<int:movieId> api Page
 @app.route('/movie/single/id/<int:movieId>/email/<email>', methods=('GET', 'POST'))
 @app.route('/movie/single/id/<int:movieId>', methods=('GET', 'POST'))
 def MovieSingle(movieId,email=None):
     if email is not None: # distanct movies
         mongo.db.moviesViews.insert({"email" : email,"movie" : movieId ,"date":datetime.datetime.now()})
         for elem in movies.movies.getGenre(movieId) :
-            mongo.db.moviesGenres.insert({"email":email,"movie":elem})
-            ##############################################################################
-    
+            mongo.db.moviesGenres.insert({"email":email,"movie":elem})    
     return json.dumps(movies.movies.getMoviesFromIds([movieId]))
 
 # Route /movie/single/id/<int:movieId>/rating/<int:rating>/email/<email> api Page
