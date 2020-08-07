@@ -537,7 +537,7 @@ def dashboardChartBar():
     data = [22,19,27,23,22,24,17,25,23,24,20,19]
     return json.dumps([labels,data])
 
-# Route /dashboard/chart api Page
+# Route /dashboard/chart/pie api Page
 @app.route('/dashboard/chart/pie', methods=('GET', 'POST'))
 def dashboardChartPie():
     labels = ['Toy Story','Jumanji','Grumpier Old Men','Waiting to Exhale','Heat','Sabrina','GoldenEye','Nixon','Balto','Copycat','Assassins','Powder']
