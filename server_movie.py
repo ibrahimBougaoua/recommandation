@@ -79,16 +79,6 @@ def recommandation(email):
 
     return random.choices(movies.Recommended(data1,data2,data3,data5,int(userId)),k=16)
 
-
-
-
-
-
-
-
-
-
-
 def token_required(f):
     @wraps(f)
     def decorated(*args,**kwargs):
