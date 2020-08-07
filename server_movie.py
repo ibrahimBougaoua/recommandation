@@ -530,7 +530,7 @@ def dashboardInformation():
     c = 7997
     return json.dumps([a,b,c])
 
-# Route /dashboard/chart api Page
+# Route /dashboard/chart/bar api Page
 @app.route('/dashboard/chart/bar', methods=('GET', 'POST'))
 def dashboardChartBar():
     labels = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011']
