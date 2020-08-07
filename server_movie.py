@@ -517,7 +517,7 @@ def moviesByUserSexe(email):
 def MovieTop():
     return json.dumps(movies.topRated()[1:10])
 
-# Route /movie/top api Page
+# Route /movie/most api Page
 @app.route('/movie/most', methods=('GET', 'POST'))
 def MovieMost():
     return json.dumps(movies.topWached()[1:10])
