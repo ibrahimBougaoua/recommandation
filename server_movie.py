@@ -432,6 +432,7 @@ def MovieRating(movieId,rating=None,email=None):
             mongo.db.moviesRating.update_one({'email': email},{'$set': { "email" : email,"movieId" : movieId,"rating" : rating }}, upsert=False)
     return json.dumps([rating])
 
+# Route /movie/single/rating/id/<int:movieId>/email/<email> api Page
 @app.route('/movie/single/rating/id/<int:movieId>/email/<email>', methods=('GET', 'POST'))
 def getMovieRating(movieId,rating=None,email=None):
     moviesRatings = mongo.db.moviesRating.find_one({"email" : email,"movieId": movieId})
