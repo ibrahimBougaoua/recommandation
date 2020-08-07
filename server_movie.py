@@ -452,6 +452,7 @@ def moviesViews(email=None):
                 data=data+movies.movies.getMoviesFromIds([demo])
     return json.dumps(data) ###############################################
 
+# Route /movie/history/title/email/<email> api Page
 @app.route('/movie/history/title/email/<email>', methods=('GET', 'POST'))
 def moviesTitle(email=None):
     data = []
@@ -463,6 +464,7 @@ def moviesTitle(email=None):
                 data.append(demo)
     return json.dumps(data)
 
+# Route /movie/history/actor/email/<email> api Page
 @app.route('/movie/history/actor/email/<email>', methods=('GET', 'POST'))
 def moviesActors(email=None):
     data = []
