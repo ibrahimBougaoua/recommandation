@@ -271,8 +271,8 @@ def searchMovies():
         if user is None:
             mongo.db.jobMajor.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
-    if cate == 'company':
-        jobSearch = jobs.searchByCompany(search)[:10] #"Yerevan Brandy Company"
+    if cate == 'city':
+        jobSearch = jobs.searchByCity(search)[:10] #"Yerevan Brandy Company"
         user = mongo.db.jobCompany.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
             mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
