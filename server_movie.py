@@ -164,6 +164,7 @@ def delete_Abonnement():
 
     return 'abonnement delete successfully !'
 
+# Route /movie/check/abonnement/user/<email>/actor/<actor> api Page
 @app.route('/movie/check/abonnement/user/<email>/actor/<actor>', methods=('GET','POST'))
 def ifAbonner(email,actor):
     user = mongo.db.abonnements.find_one({"email": email,"actor": actor})
@@ -171,6 +172,7 @@ def ifAbonner(email,actor):
         return 'no'
     return 'yes'
 
+# Route /movie/showlater/new/email/<email>/id/<int:_id> api Page
 @app.route('/movie/showlater/new/email/<email>/id/<int:_id>', methods=('GET','POST'))
 def new_show_later(email,_id):
     _movie = movies.movies.getMoviesFromIds([_id])
@@ -182,6 +184,7 @@ def new_show_later(email,_id):
 
     return 'movie already exists !'
 
+# Route /movie/check/showlater/user/<email>/id/<_id> api Page
 @app.route('/movie/check/showlater/user/<email>/id/<_id>', methods=('GET','POST'))
 def ifShowlater(email,_id):
     _movie = movies.movies.getMoviesFromIds([_id])
