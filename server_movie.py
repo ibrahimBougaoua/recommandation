@@ -490,7 +490,7 @@ def moviesTag(email=None):
 def MovieRecommended(email):
     return json.dumps(recommandation(email))
 
-# Route /movie/age api Page
+# Route /movie/age/<email> api Page
 @app.route('/movie/age/<email>')
 def moviesByUserAge(email):
     userData = mongo.db.user.find_one({"email" : email})
