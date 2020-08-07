@@ -485,7 +485,7 @@ def moviesTag(email=None):
                 data.append(demo)
     return json.dumps(data)
 
-# Route /movie/recommended api Page
+# Route /movie/recommended/<email> api Page
 @app.route('/movie/recommended/<email>', methods=('GET', 'POST'))
 def MovieRecommended(email):
     return json.dumps(recommandation(email))
