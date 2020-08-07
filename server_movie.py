@@ -440,6 +440,7 @@ def getMovieRating(movieId,rating=None,email=None):
     else:
         return json.dumps([moviesRatings["rating"]])
 
+# Route /movie/history/views/email/<email> api Page
 @app.route('/movie/history/views/email/<email>', methods=('GET', 'POST'))
 def moviesViews(email=None):
     data = []
@@ -450,7 +451,7 @@ def moviesViews(email=None):
             demo = x["movie"]
             if demo:
                 data=data+movies.movies.getMoviesFromIds([demo])
-    return json.dumps(data) ###############################################
+    return json.dumps(data)
 
 # Route /movie/history/title/email/<email> api Page
 @app.route('/movie/history/title/email/<email>', methods=('GET', 'POST'))
