@@ -299,7 +299,7 @@ def getUserInformation(email):
 
     return json.dumps(['get User Information is invalid'])
 
-
+# Route /movie/user/update/<user_email> api Page
 @app.route('/movie/user/update/<user_email>', methods=('GET','POST'))
 def updateUserInformation(user_email):
 
@@ -313,11 +313,6 @@ def updateUserInformation(user_email):
     age = request.args.get("age")
     country = request.args.get("country")
     telephone = request.args.get("telephone")
-
-    
-    
-    #email_find = mongo.db.users.find_one({"email": email})
-    #telephone_find = mongo.db.users.find_one({"telephone": telephone})
 
     if not fisrtname:
         error.append('fisrtname is empty.')
@@ -354,6 +349,7 @@ def updateUserInformation(user_email):
         error.append('user updated successfully.')
     return json.dumps(error)
 
+# Route /movie/login api Page
 @app.route('/movie/login', methods=('GET','POST'))
 def login_jwt():
 
