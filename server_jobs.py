@@ -279,6 +279,27 @@ def searchMovies():
 
     return json.dumps(jobSearch)
 
+
+# Route /job/search Page
+@app.route('/job/search/Recentes', methods=('GET', 'POST'))
+def RecherchesRecentes():
+
+    data = []
+
+    jobSkills = mongo.db.jobSkills.find_one({"email" : email})
+    if jobSkills is None:
+        data.append(jobSkills)
+
+    jobMajor = mongo.db.jobMajor.find_one({"email" : email})
+    if jobMajor is None:
+        data.append(jobSkills)
+
+    jobCompany = mongo.db.jobCompany.find_one({"email" : email})
+    if jobCompany is None:
+        data.append(jobCompany)
+
+    return json.dumps(data)
+
 # Route /job/single/id/<int:jobId>/email/<email>
 # Route /job/single/id/<int:jobId>
 @app.route('/job/single/id/<int:jobId>/email/<email>', methods=('GET', 'POST'))
