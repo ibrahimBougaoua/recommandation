@@ -316,6 +316,14 @@ def RecherchesRecentesJobMajors(email):
         data.append(x["majors"])
     return json.dumps(Counter(data))
 
+# Route /job/search/Recentes/<email> Page
+@app.route('/job/search/recentes/majors/<email>', methods=('GET', 'POST'))
+def RecherchesRecentesJobCity(email):
+    data = []    
+    for x in mongo.db.jobCity.find({"email": email},limit=2):
+        data.append(x["city"])
+    return json.dumps(Counter(data))
+
 # Route /job/single/id/<int:jobId>/email/<email>
 # Route /job/single/id/<int:jobId>
 @app.route('/job/single/id/<int:jobId>/email/<email>', methods=('GET', 'POST'))
