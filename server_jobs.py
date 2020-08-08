@@ -273,30 +273,30 @@ def searchMovies():
 
     if cate == 'city':
         jobSearch = jobs.searchByCity(search)[:10] #"Yerevan Brandy Company"
-        user = mongo.db.jobCompany.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
+        user = mongo.db.jobCity.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
         if user is None:
-            mongo.db.jobCompany.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
+            mongo.db.jobCity.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
 
     return json.dumps(jobSearch)
 
 
 # Route /job/search Page
-@app.route('/job/search/Recentes', methods=('GET', 'POST'))
-def RecherchesRecentes():
+@app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
+def RecherchesRecentes(email):
 
     data = []
 
-    jobSkills = mongo.db.jobSkills.find_one({"email" : email})
+    jobSkills = mongo.db.jobSkills.find_one({"email" : email},limit=2)
     if jobSkills is None:
         data.append(jobSkills)
 
     jobMajor = mongo.db.jobMajor.find_one({"email" : email})
     if jobMajor is None:
-        data.append(jobSkills)
+        #data.append(jobSkills)
 
-    jobCompany = mongo.db.jobCompany.find_one({"email" : email})
-    if jobCompany is None:
-        data.append(jobCompany)
+    jobCity = mongo.db.jobCity.find_one({"email" : email})
+    if jobCity is None:
+        #data.append(jobCity)
 
     return json.dumps(data)
 
