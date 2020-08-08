@@ -251,7 +251,7 @@ def login_jwt():
 
 # Route /job/search Page
 @app.route('/job/search/', methods=('GET', 'POST'))
-def searchMovies():
+def searchJob():
 
     search = request.args.get("search")
     cate   = request.args.get("cate")
@@ -261,21 +261,21 @@ def searchMovies():
 
     if cate == 'majors':
         jobSearch = jobs.searchByMajor(search)[:10] #"Java Developer"
-        user = mongo.db.jobSkills.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
+        user = mongo.db.jobSkills.find_one({"email" : email,"skills": search ,"date":datetime.datetime.now()})
         if user is None:
-            mongo.db.jobSkills.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
+            mongo.db.jobSkills.insert({"email" : email,"skills" : search ,"date":datetime.datetime.now() })
 
     if cate == 'skills':
         jobSearch = jobs.searchBySkills(search)[:10] #"R"
-        user = mongo.db.jobMajor.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
+        user = mongo.db.jobMajor.find_one({"email" : email,"majors": search ,"date":datetime.datetime.now()})
         if user is None:
-            mongo.db.jobMajor.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
+            mongo.db.jobMajor.insert({"email" : email,"majors" : search ,"date":datetime.datetime.now() })
 
     if cate == 'city':
         jobSearch = jobs.searchByCity(search)[:10] #"Yerevan Brandy Company"
-        user = mongo.db.jobCity.find_one({"email" : email,"job": search ,"date":datetime.datetime.now()})
+        user = mongo.db.jobCity.find_one({"email" : email,"city": search ,"date":datetime.datetime.now()})
         if user is None:
-            mongo.db.jobCity.insert({"email" : email,"job" : search ,"date":datetime.datetime.now() })
+            mongo.db.jobCity.insert({"email" : email,"city" : search ,"date":datetime.datetime.now() })
 
     return json.dumps(jobSearch)
 
@@ -317,7 +317,7 @@ def RecherchesRecentesJobMajors(email):
     return json.dumps(Counter(data))
 
 # Route /job/search/Recentes/<email> Page
-@app.route('/job/search/recentes/majors/<email>', methods=('GET', 'POST'))
+@app.route('/job/search/recentes/city/<email>', methods=('GET', 'POST'))
 def RecherchesRecentesJobCity(email):
     data = []    
     for x in mongo.db.jobCity.find({"email": email},limit=2):
