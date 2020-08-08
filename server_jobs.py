@@ -1,7 +1,7 @@
 from flask import Flask,render_template, url_for ,flash,redirect,session,request,jsonify,json,make_response
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
-
+from collections import Counter
 from hybride import hybride_job
 from jobs import jobs
 from flask_pymongo import PyMongo
@@ -303,11 +303,10 @@ def searchMovies():
 # Route /job/search/Recentes/<email> Page
 @app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
 def RecherchesRecentes(email):
-    data = []
-    e = mongo.db.jobSkills.find({"email" : email},limit=2)
-    if e is not None:
-        data.append(e)
-    return json.dumps(data)
+    data = []    
+    for x in mongo.db.jobSkills.find({"email": email},{ "_id": 0, "email": 1, "skills": 1 }):
+        data.append(x["skills"])
+    return json.dumps(Counter(data))
 
 # Route /job/single/id/<int:jobId>/email/<email>
 # Route /job/single/id/<int:jobId>
