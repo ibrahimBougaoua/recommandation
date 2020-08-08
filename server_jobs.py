@@ -300,12 +300,20 @@ def searchMovies():
 
 #    return json.dumps(data)
 
-# Route /job/search/Recentes/<email> Page
-@app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
-def RecherchesRecentes(email):
+# Route /job/search/Recentes/skills/<email> Page
+@app.route('/job/search/recentes/skills/<email>', methods=('GET', 'POST'))
+def RecherchesRecentesJobSkills(email):
     data = []    
-    for x in mongo.db.jobSkills.find({"email": email},{ "_id": 0, "email": 1, "skills": 1 }):
+    for x in mongo.db.jobSkills.find({"email": email},limit=2):
         data.append(x["skills"])
+    return json.dumps(Counter(data))
+
+# Route /job/search/Recentes/<email> Page
+@app.route('/job/search/recentes/majors/<email>', methods=('GET', 'POST'))
+def RecherchesRecentesJobMajors(email):
+    data = []    
+    for x in mongo.db.jobMajors.find({"email": email},limit=2):
+        data.append(x["majors"])
     return json.dumps(Counter(data))
 
 # Route /job/single/id/<int:jobId>/email/<email>
