@@ -304,7 +304,7 @@ def searchMovies():
 @app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
 def RecherchesRecentes(email):
     data = []
-    e = mongo.db.jobSkills.find_one({"email" : email},limit=2)
+    e = mongo.db.jobSkills.find({"email" : email},limit=2)
     if e is not None:
         data.append(e)
     return json.dumps(data)
