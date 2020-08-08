@@ -280,24 +280,33 @@ def searchMovies():
     return json.dumps(jobSearch)
 
 
-# Route /job/search Page
-@app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
-def RecherchesRecentes(email):
+# Route /job/search/Recentes/<email> Page
+#@app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
+#def RecherchesRecentess(email):
 
-    data = []
+#    data = []
 
-    jobSkills = mongo.db.jobSkills.find_one({"email" : email},limit=2)
-    if jobSkills is None:
-        data.append(jobSkills)
+#    jobSkills = mongo.db.jobSkills.find_one({"email" : email},limit=2)
+#    if jobSkills is None:
+#        data.append(jobSkills)
 
-    jobMajor = mongo.db.jobMajor.find_one({"email" : email})
-    if jobMajor is None:
+#    jobMajor = mongo.db.jobMajor.find_one({"email" : email})
+#    if jobMajor is None:
         #data.append(jobSkills)
 
-    jobCity = mongo.db.jobCity.find_one({"email" : email})
-    if jobCity is None:
+    #jobCity = mongo.db.jobCity.find_one({"email" : email})
+    #if jobCity is None:
         #data.append(jobCity)
 
+#    return json.dumps(data)
+
+# Route /job/search/Recentes/<email> Page
+@app.route('/job/search/Recentes/<email>', methods=('GET', 'POST'))
+def RecherchesRecentes(email):
+    data = []
+    e = mongo.db.jobSkills.find_one({"email" : email},limit=2)
+    if e is not None:
+        data.append(e)
     return json.dumps(data)
 
 # Route /job/single/id/<int:jobId>/email/<email>
