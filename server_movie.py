@@ -505,7 +505,7 @@ def moviesByUserAge(email):
 def moviesByUserCountry(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([13,14,15,16,17,20,14,19,24,233,10,17])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([13,14,15,16,17,18,19,20,21,22,23,24])[:16])
 
 
 ################################## Books by Sexe ##########################################
@@ -513,7 +513,7 @@ def moviesByUserCountry(email):
 def moviesByUserSexe(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe(userData["sexe"])[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([4,12,3,4,9,23,20,10,50,80,16,40])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([25,26,27,28,29,30,31,32,33,34,35,36])[:16])
 
 
 
