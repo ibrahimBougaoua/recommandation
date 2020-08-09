@@ -506,7 +506,7 @@ def moviesByUserAge(email):
 def moviesByUserCountry(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([17,18,19,6,21,22,23,24,25,26,27,8,29,30,31,32])[:16])
 
 
 ################################## Books by Sexe ##########################################
