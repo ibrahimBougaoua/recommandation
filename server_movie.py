@@ -79,7 +79,8 @@ def recommandation(email):
     for elem in counts.most_common(10):
         data5.append(elem[0])
 
-    return random.choices(movies.Recommended(data1,data2,data3,data5,int(userId)),k=16)
+    #return random.choices(movies.Recommended(data1,data2,data3,data5,int(userId)),k=16)
+    return json.dumps(movies.movies.getMoviesFromIds([33,34,35,2241,37,38,39,40,7835,42,43,44,45,46,47,48])[:16])
 
 def token_required(f):
     @wraps(f)
@@ -498,14 +499,14 @@ def MovieRecommended(email):
 def moviesByUserAge(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByAge(int(userData["age"]))[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([1,2,3,4,5,6,7,8,9,10,11,12])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([1,2,45,4,46,6,7,8,9,10,11,48,13,14,15,16])[:16])
 
 # Route /movie/country api Page
 @app.route('/movie/country/<email>', methods=('GET', 'POST'))
 def moviesByUserCountry(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([13,14,15,16,17,18,19,20,21,22,23,24])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32])[:16])
 
 
 ################################## Books by Sexe ##########################################
@@ -513,7 +514,7 @@ def moviesByUserCountry(email):
 def moviesByUserSexe(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe(userData["sexe"])[:16]))
-    return json.dumps(movies.movies.getMoviesFromIds([25,26,27,28,29,30,31,32,33,34,35,36])[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([33,34,35,2241,37,38,39,40,7835,42,43,44,45,46,47,48])[:16])
 
 
 
