@@ -29,6 +29,8 @@ bcrypt = Bcrypt()
 mongo  = PyMongo(app)
 movies =hybride_movie()
 
+print(movies.movieIdsByCountry("NC"))
+
 ######################################################## movie Service ######################################################
 def recommandation(email):
    
@@ -492,26 +494,26 @@ def MovieRecommended(email):
     return json.dumps(recommandation(email))
 
 # Route /movie/age/<email> api Page
-@app.route('/movie/age/<email>')
+@app.route('/movie/age/<email>', methods=('GET', 'POST'))
 def moviesByUserAge(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByAge(int(userData["age"]))[:16]))
-    return json.dumps(movies.movieIdsByAge(38.8))[:16]
+    return json.dumps(movies.movies.getMoviesFromIds([1,2,3,4,5,6,7,8,9,10,11,12])[:16])
 
 # Route /movie/country api Page
-@app.route('/movie/country/<email>')
+@app.route('/movie/country/<email>', methods=('GET', 'POST'))
 def moviesByUserCountry(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
-    return json.dumps(movies.movieIdsByCountry("NC")[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([13,14,15,16,17,20,14,19,24,233,10,17])[:16])
 
 
 ################################## Books by Sexe ##########################################
-@app.route('/movie/sexe/<email>')
+@app.route('/movie/sexe/<email>', methods=('GET', 'POST'))
 def moviesByUserSexe(email):
     userData = mongo.db.user.find_one({"email" : email})
     #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe(userData["sexe"])[:16]))
-    return json.dumps(movies.movieIdsBySexe("Female")[:16])
+    return json.dumps(movies.movies.getMoviesFromIds([4,12,3,4,9,23,20,10,50,80,16,40])[:16])
 
 
 
