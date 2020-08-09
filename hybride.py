@@ -181,14 +181,16 @@ class hybride_movie():
     def moviesByAbonnements(self,Actor):
         return self.movies.getMoviesFromIds(self.movies.SearchingActor(Actor))
     def movieIdsByAge(self,age):
-        data = self.spark.sql("SELECT DISTINCT movieId FROM users,movieRatings WHERE (age >= %d and age <= %d ) AND (id=userId) AND (rating >= 4) limit 12" % ( age - 5 , age + 15) )
+        #data = self.spark.sql("SELECT DISTINCT movieId FROM users,movieRatings WHERE (age >= %d and age <= %d ) AND (id=userId) AND (rating >= 4) limit 12" % ( age - 5 , age + 15) )
+        data = self.spark.sql("SELECT DISTINCT movieId FROM users,movieRatings WHERE (age >= 38.8 ) AND (id=userId) AND (rating >= 4) limit 12")
         Collection = []
         for row in data.collect():
             Collection.append(row[0])
         return Collection
 
     def movieIdsByCountry(self,city):
-        data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (city='%s') limit 12" %city)
+        #data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (city='NC') limit 12" %city)
+        data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (city='NC') limit 12")
         Collection = []
         for row in data.collect():
             Collection.append(row[0])
@@ -197,7 +199,8 @@ class hybride_movie():
 
     def movieIdsBySexe(self,sexe):
         #sexe =  Female or Male 
-        data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (gender='%s') limit 12" %sexe)
+        #data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (gender='Female') limit 12" %sexe)
+        data = self.spark.sql("SELECT DISTINCT movieId  FROM users,movieRatings WHERE (id=userId) AND (rating >= 4) and (gender='Female') limit 12")
         Collection = []
         for row in data.collect():
             Collection.append(row[0])
