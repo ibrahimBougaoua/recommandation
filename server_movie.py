@@ -495,20 +495,23 @@ def MovieRecommended(email):
 @app.route('/movie/age/<email>')
 def moviesByUserAge(email):
     userData = mongo.db.user.find_one({"email" : email})
-    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByAge(int(userData["age"]))[:16]))
+    #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByAge(int(userData["age"]))[:16]))
+    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByAge(38.8))[:16]))
 
 # Route /movie/country api Page
 @app.route('/movie/country/<email>')
 def moviesByUserCountry(email):
     userData = mongo.db.user.find_one({"email" : email})
-    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
+    #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry(userData["country"])[:16]))
+    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsByCountry("NC")[:16]))
 
 
 ################################## Books by Sexe ##########################################
 @app.route('/movie/sexe/<email>')
 def moviesByUserSexe(email):
     userData = mongo.db.user.find_one({"email" : email})
-    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe(userData["sexe"])[:16]))
+    #return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe(userData["sexe"])[:16]))
+    return json.dumps(movies.movies.getMoviesFromIds(movies.movieIdsBySexe("Female")[:16]))
 
 
 
